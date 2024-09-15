@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;700&display=swap');
+
+:root {
+    --background: #050510;
+    --foreground: #e0e0e0;
+    --primary: #9d4edd;
+    --secondary: #3c096c;
+    --accent: #5a189a;
+    --surface: #1a1a2e;
+    --vibranium: #7b2cbf;
+    --energy: #00ffff;
+    --output-bg: #ffffff;
+    --output-text: #1a1a2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Chakra Petch', sans-serif;
+    background: linear-gradient(45deg, var(--background), var(--surface), var(--secondary));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    width: 100%;
+    background-color: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(157, 78, 221, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.1) 0%, transparent 70%);
+    animation: rotateGradient 10s linear infinite;
+}
+
+@keyframes rotateGradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes logoGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px var(--vibranium)); }
+    50% { filter: drop-shadow(0 0 20px var(--energy)); }
+}
+
+.logo {
+    max-width: 120px;
+    height: auto;
+    transition: all 0.3s ease;
+    animation: logoFloat 3s ease-in-out infinite, logoGlow 3s infinite;
+    filter: drop-shadow(0 0 10px var(--energy));
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+@keyframes navItemPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.nav-item {
+    color: var(--foreground);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--energy);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover:before {
+    width: 100%;
+}
+
+.nav-item:hover {
+    color: var(--energy);
+    background-color: rgba(157, 78, 221, 0.1);
+    animation: navItemPulse 0.5s ease-in-out;
+    transform: translateY(-3px) scale(1.05);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--energy), transparent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover::after {
+    transform: scaleX(1);
+}
+
+@keyframes marqueeGlow {
+    0%, 100% { text-shadow: 0 0 5px var(--vibranium); }
+    50% { text-shadow: 0 0 20px var(--energy); }
+}
+
+marquee {
+    width: 100%;
+    background-color: rgba(26, 26, 46, 0.5);
+    color: var(--energy);
+    padding: 0.5rem;
+    margin: 1rem 0;
+    font-weight: bold;
+    animation: marqueeGlow 2s infinite;
+}
+
+@keyframes editorPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.3); }
+}
+
+.code-editor {
+    width: 95%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--primary);
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease, editorPulse 4s infinite;
+    position: relative;
+}
+
+.code-editor::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, var(--vibranium), var(--energy));
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.7;
+    animation: borderGlow 4s infinite alternate;
+}
+
+@keyframes borderGlow {
+    0% { filter: blur(20px); opacity: 0.7; }
+    100% { filter: blur(10px); opacity: 0.9; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.code {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    padding: 1rem;
+    overflow-y: auto;
+    gap: 1rem;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.code-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes glowText {
+    0%, 100% { text-shadow: 0 0 5px var(--vibranium); }
+    50% { text-shadow: 0 0 10px var(--energy); }
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--energy);
+    display: flex;
+    align-items: center;
+    animation: glowText 2s infinite;
+}
+
+h2 img {
+    width: 1.3rem;
+    margin-right: 0.5rem;
+}
+
+textarea {
+    flex-grow: 1;
+    background-color: rgba(10, 10, 30, 0.8);
+    color: var(--foreground);
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    resize: none;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Chakra Petch', monospace;
+}
+
+@keyframes focusGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.7); }
+}
+
+textarea:focus {
+    outline: 2px solid var(--energy);
+    animation: focusGlow 2s infinite;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+textarea::-webkit-scrollbar {
+    width: 0.4rem;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: var(--vibranium);
+    border-radius: 0.4rem;
+}
+
+@keyframes outputGlow {
+    0%, 100% { box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.3); }
+    50% { box-shadow: inset 0 0 40px rgba(157, 78, 221, 0.7), 0 0 30px rgba(157, 78, 221, 0.5); }
+}
+
+#result {
+    height: 30%;
+    border: none;
+    background-color: var(--output-bg);
+    color: var(--output-text);
+    font-weight: bold;
+    padding: 1rem;
+    border-top: 2px solid var(--vibranium);
+    animation: outputGlow 4s infinite;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px var(--energy);
+    letter-spacing: 0.5px;
+}
+
+#result::before {
+    content: 'OUTPUT';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--energy);
+    background-color: rgba(0, 255, 255, 0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 3px var(--vibranium);
+}
+
+@keyframes outputPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+#result::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    animation: rotateGradient 15s linear infinite;
+}
+
+@keyframes energyFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(26, 26, 46, 0.6);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--vibranium), var(--energy));
+    border-radius: 10px;
+    border: 3px solid rgba(26, 26, 46, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--energy), var(--vibranium));
+}
+
+.energy-border {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, var(--vibranium), var(--energy), var(--vibranium));
+    border-image-slice: 1;
+    background: linear-gradient(45deg, var(--vibranium), var(--energy), var(--vibranium));
+    background-size: 200% 200%;
+    animation: energyFlow 5s ease infinite, borderPulse 2s infinite alternate;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+@keyframes borderPulse {
+    0% { border-width: 2px; }
+    100% { border-width: 4px; }
+}
+
+@keyframes panther-eyes {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.panther-eyes {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 30px;
+    background: radial-gradient(circle, var(--energy) 30%, transparent 30%),
+                radial-gradient(circle, var(--energy) 30%, transparent 30%);
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0, 100% 0;
+    opacity: 0.3;
+    animation: panther-eyes 4s infinite, eyesMove 10s infinite;
+    pointer-events: none;
+}
+
+@keyframes eyesMove {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(5px, 5px); }
+    50% { transform: translate(0, 10px); }
+    75% { transform: translate(-5px, 5px); }
+}
+
+/* Particle effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(circle, var(--energy) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50px); }
+}

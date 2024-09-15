@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venom Coding - Live Code Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="cyan-venom.png" alt="Venom Coding Logo" class="logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-item">Home</a></li>
+            <li><a href="#" class="nav-item">Editor</a></li>
+            <li><a href="#" class="nav-item">About</a></li>
+            <li><a href="#" class="nav-item">Contact</a></li>
+        </ul>
+    </nav>
+    <marquee>WELCOME TO VENOM CODING!! RUN YOUR BEST CODES HERE!!</marquee>
+    <main class="code-editor">
+        <section class="code">
+            <div class="code-section">
+                <h2><img src="images/html.png" alt="HTML icon">HTML</h2>
+                <textarea id="html-code" aria-label="HTML code input"></textarea>
+            </div>
+            <div class="code-section">
+                <h2><img src="images/CSS.png" alt="CSS icon">CSS</h2>
+                <textarea id="css-code" aria-label="CSS code input"></textarea>
+            </div>
+            <div class="code-section">
+                <h2><img src="images/js.png" alt="JavaScript icon">JS</h2>
+                <textarea id="js-code" spellcheck="false" aria-label="JavaScript code input"></textarea>
+            </div>
+        </section>
+        <iframe id="result" title="Code output"></iframe>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
